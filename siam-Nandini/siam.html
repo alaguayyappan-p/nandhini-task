@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Siam task - Nandini</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://bgrins.github.io/spectrum/spectrum.js"></script>
+    <link  rel="stylesheet" href="http://bgrins.github.io/spectrum/spectrum.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+
+<section class="container">
+    <div class="main-bar">
+    <button class="heading"   id="head_bar">
+        <a>
+            Heading
+        </a>
+      </button>
+    <button class="sidebar" id="side_bar">
+        <a>
+            Sidebar
+        </a>
+      </button>
+    <button class="mainbar" id="main_bar">
+        <a>
+            Main body
+        </a>
+      </button>
+</div>
+    <div class="heading-content">
+        <div class="color">
+            <input type='text'  id="picker_bg">&nbsp;  Background Color</input><br><br>
+            <input type='text' id="picker_menu">&nbsp;  Menu text color</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_name">&nbsp;  Your Name</input><br><br>
+            <input type='text' id="picker_desig">&nbsp;  Designation</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_btn">&nbsp;  Contact button Color</input><br><br>
+            <input type='text' id="picker_btn_txt">&nbsp;  Contact buton text color</input>
+        </div>
+    </div>
+
+    <div class="side-content" >
+        <div class="color">
+            <input type='text'  id="picker_touch">&nbsp;  Get In Touch button Color</input><br><br>
+            <input type='text' id="picker_text">&nbsp;  Get In Touch text color</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_web_btn">&nbsp;  Website button color</input><br><br>
+            <input type='text' id="picker_web_btn_txt">&nbsp;  Website button text color</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_phone">&nbsp; Phone # Color</input><br><br>
+            <input type='text' id="picker_sidebar">&nbsp;  Sidebar color</input>
+        </div>
+    </div>
+
+    <div class="main-content" >
+        <div class="color">
+            <input type='text'  id="picker_bg_color">&nbsp;  Profile Background Color</input><br><br>
+            <input type='text' id="picker_pfcolor">&nbsp;  Profile text color</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_pfbtn">&nbsp;  Profile button color</input><br><br>
+            <input type='text' id="picker_pfbtn_txt">&nbsp;  Profile button text color</input>
+        </div>
+
+        <div class="color">
+            <input type='text' id="picker_hyperlink">&nbsp;  Hyperlink Color</input><br><br>
+        </div>
+    </div>
+
+<div class="content" id="bg_color">
+    <div class="profile-details">
+        <img class="profile-icon" src="img/profilejpg.jpg" alt="photo" title="photo">
+        <div class="details">
+        <h2 class="output render" id="name_color">Your Name</h2>
+        <p class="output_desig render" id="desig-color"><small>UI DEVELOPER</small></p>
+    </div>
+    </div>
+    <div class="contact-details">
+        <button class="btn btn-default p-1 output_btn" id="btn_color"><span id="btn_txt" class="output_btn_txt">Contact me</span></button>
+        <p class="p-1 menu" id="menu_color">Home</p>
+        <p class="p-1 menu" id="menu_color">Get in touch</p>
+    </div>
+</div>
+
+</section>
+
+
+
+
+<script>
+   jQuery(document).ready(function(){
+    jQuery('.side-content').hide();
+            jQuery('.main-content').hide();
+        jQuery("#head_bar").click(function(){
+            jQuery('.heading-content').show();
+            jQuery('.side-content').hide();
+            jQuery('.main-content').hide();
+    });
+    jQuery("#side_bar").click(function(){
+        jQuery('.heading-content').hide();
+            jQuery('.side-content').show();
+            jQuery('.main-content').hide();
+    });
+    jQuery("#main_bar").click(function(){
+        jQuery('.heading-content').hide();
+            jQuery('.side-content').hide();
+            jQuery('.main-content').show();
+    });
+    $('.heading').on('click', function(){
+    $('.heading').removeClass('selected');
+    $(this).addClass('selected');
+});
+});
+
+    var initialColor = "";
+    $("#bg_color").css("background-color", initialColor);
+    $("#menu_color").css("color", initialColor);
+    $("#name_color").css("color", initialColor);
+    $("#desig-color").css("color", initialColor );
+    $("#btn-color").css("background-color", initialColor );
+    $("#btn_txt").css("color", initialColor );
+   
+
+    function updateColor(element, color) {
+      $(element).css("color",
+        (color ? color.toHexString() : ""));
+    }
+    function updateBgColor(element, color) {
+      $(element).css("background-color",
+        (color ? color.toHexString() : ""));
+    }
+
+    $("#picker_bg").spectrum({
+      color: "red",
+      move: function(color) {
+        updateBgColor(".content", color);
+      },
+      hide: function(color) {
+        updateBgColor(".content", color);
+      }
+    });
+
+    $("#picker_menu").spectrum({
+      color: "#fff",
+      move: function(color) {
+        updateColor(".menu", color);
+      },
+      hide: function(color) {
+        updateColor(".menu", color);
+      }
+    });
+    
+    $("#picker_name").spectrum({
+      color: "#fff",
+      move: function(color) {
+        updateColor(".output.render", color);
+      },
+      hide: function(color) {
+        updateColor(".output.render", color);
+      }
+    });
+
+    $("#picker_desig").spectrum({
+      color: "#fff",
+      move: function(color) {
+        updateColor(".output_desig.render", color);
+      },
+      hide: function(color) {
+        updateColor(".output_desig.render", color);
+      }
+    });
+
+    $("#picker_btn").spectrum({
+      color: "#fff",
+      move: function(color) {
+        updateBgColor(".output_btn", color);
+      },
+      hide: function(color) {
+        updateBgColor(".output_btn", color);
+      }
+    });
+
+    $("#picker_btn_txt").spectrum({
+      color: initialColor,
+      move: function(color) {
+        updateColor(".output_btn_txt", color);
+      },
+      hide: function(color) {
+        updateColor(".output_btn_txt", color);
+      }
+    });
+    $("#picker_touch").spectrum();
+    $("#picker_text").spectrum();
+    $("#picker_web_btn").spectrum();
+    $("#picker_web_btn_txt").spectrum();
+    $("#picker_phone").spectrum();
+    $("#picker_sidebar").spectrum();
+    $("#picker_bg_color").spectrum();
+    $("#picker_pfcolor").spectrum();
+    $("#picker_pfbtn").spectrum();
+    $("#picker_pfbtn_txt").spectrum();
+    $("#picker_hyperlink").spectrum();
+
+
+</script>
+
+
+
